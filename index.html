@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Heart Curve</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="heartCanvas"></canvas>
+  <script>
+    const canvas = document.getElementById('heartCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    function hearta(k) {
+      return 15 * Math.sin(k) ** 3;
+    }
+
+    function heartb(k) {
+      return 12 * Math.cos(k) - 5 * Math.cos(2 * k) - 2 * Math.cos(3 * k) - Math.cos(4 * k);
+    }
+
+    ctx.fillStyle = '#f73487';
+
+    for (let i = 0; i < 6000; i++) {
+      const k = i * 0.01;
+      const x = hearta(k) * 20 + centerX;
+      const y = -heartb(k) * 20 + centerY;
+      ctx.fillRect(x, y, 1.5, 1.5);
+    }
+  </script>
+</body>
+</html>
